@@ -8,6 +8,4 @@ module com.example.taskfx {
     exports com.example.taskfx;
     exports com.example.taskfx.controllerviews;
     opens com.example.taskfx.controllerviews to javafx.fxml;
-    exports com.example.taskfx.modelsviews;
-    opens com.example.taskfx.modelsviews to javafx.fxml;
 }
