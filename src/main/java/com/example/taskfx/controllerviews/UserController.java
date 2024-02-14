@@ -1,6 +1,7 @@
 package com.example.taskfx.controllerviews;
 
 import com.example.taskfx.controller.TaskController;
+import com.example.taskfx.models.ModeloBase;
 import com.example.taskfx.models.Task;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
@@ -32,43 +33,62 @@ public class UserController implements IControllerView{
     public CheckBox ckstatus;
     public Button btnedit;
     public Button btnDelete;
-    private ObservableList<Task> task;
+    private ObservableList<Task> tasklist;
 
     TaskController taskController;
-
+    TaskController funciones = new TaskController();
     @Override
     public void setTaskController(TaskController taskController) {
         this.taskController=taskController;
     }
     public UserController() {
-        task = FXCollections.observableArrayList();
+        tasklist = FXCollections.observableArrayList();
     }
 
-    public void btnBorrar(ActionEvent actionEvent) {
-        taskController.deleteTask(txttitle.getText());
+    public void btnBorrar() {
+        Task task = table.getSelectionModel().getSelectedItem();
+        task.setTitle(task.getTitle());
+        funciones.deleteTask(txttitle.getText());
+        Cancelar();
         table.refresh();
     }
 
-    public void btneditTask(ActionEvent actionEvent) {
+    public void btneditTask() {
+        Task task = table.getSelectionModel().getSelectedItem();
+        task.setIdtask(task.getIdtask());
+        task.setTitle(task.getTitle());
+        task.setDescription(task.getDescription());
+        task.setStatus(ckstatus.isSelected());
+        task.setDeadline(dpDeadline.getValue());
+        System.out.println(task.getIdtask());
+        taskController.completeTask(task.getIdtask());
+        taskController.newDescription(task.getIdtask(), txtDescription.getText());
+        taskController.newTitle(task.getIdtask(),txttitle.getText());
+        taskController.newDeadline(task.getIdtask(),dpDeadline.getValue());
+        table.refresh();
+        Cancelar();
     }
 
-    public void agregarAtabla(ActionEvent actionEvent) {
+    public void agregarAtabla() {
+        taskController.newTask(txttitle.getText(),txtDescription.getText(),dpDeadline.getValue());
+        txttitle.clear();
+        txtDescription.clear();
+        dpDeadline.setValue(null);
     }
 
     @FXML
-    public void traerdatos(ActionEvent actionEvent) {
-        task = FXCollections.observableArrayList(
-                new Task (LocalDate.now(), "Sistema solar", "Dibuja el sistema solar", LocalDate.of(2024, 02, 16), false),
-                new Task(LocalDate.now(), "Programacion", "Crea un programa de sumas", LocalDate.of(2024, 02, 29), false),
-                new Task(LocalDate.now(), "Crea una tabla", "Crea unas tablas para guardar datos", LocalDate.of(2024, 03, 15), false)
-        );
-        table.setItems(task);
+    public void traerdatos() {
+        Task task = new Task();
+        tasklist = FXCollections.observableArrayList(
+           task.getallTasks());
+        table.setItems(tasklist);
     }
 
-    public void showNew(MouseEvent mouseEvent) {
+    public void showNew() {
+        Cancelar();
     }
 
-    public void close(ActionEvent actionEvent) {
+    public void close() {
     }
     @FXML
     public void initialize() {
@@ -99,5 +119,15 @@ public class UserController implements IControllerView{
                 }
             }
         });
+    }
+
+    public void Cancelar() {
+        bttnNew.setVisible(true);
+        btnedit.setVisible(false);
+        btnDelete.setVisible(false);
+        txttitle.setDisable(false);
+        txttitle.setText("");
+        txtDescription.setText("");
+        dpDeadline.setValue(null);
     }
 }
