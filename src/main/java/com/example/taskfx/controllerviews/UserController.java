@@ -1,14 +1,12 @@
 package com.example.taskfx.controllerviews;
 
 import com.example.taskfx.controller.TaskController;
-import com.example.taskfx.models.ModeloBase;
 import com.example.taskfx.models.Task;
 import javafx.beans.property.SimpleBooleanProperty;
 import javafx.beans.property.SimpleObjectProperty;
 import javafx.beans.property.SimpleStringProperty;
 import javafx.collections.FXCollections;
 import javafx.collections.ObservableList;
-import javafx.event.ActionEvent;
 import javafx.event.EventHandler;
 import javafx.fxml.FXML;
 import javafx.scene.control.*;
@@ -16,9 +14,8 @@ import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.input.MouseEvent;
 
 import java.time.LocalDate;
-import java.time.LocalTime;
 
-public class UserController implements IControllerView{
+public class UserController extends ControllerView {
     public Menu mnFile;
     public MenuItem mnClose;
     public TableView<Task> table;
@@ -35,22 +32,18 @@ public class UserController implements IControllerView{
     public Button btnDelete;
     private ObservableList<Task> tasklist;
 
-    TaskController taskController;
-    TaskController funciones = new TaskController();
-    @Override
-    public void setTaskController(TaskController taskController) {
-        this.taskController=taskController;
-    }
+
     public UserController() {
         tasklist = FXCollections.observableArrayList();
     }
 
     public void btnBorrar() {
         Task task = table.getSelectionModel().getSelectedItem();
-        task.setTitle(task.getTitle());
-        funciones.deleteTask(txttitle.getText());
+        tasklist.remove(task);
+        this.taskController.deleteTask(txttitle.getText());
         Cancelar();
         table.refresh();
+        btnDelete.setVisible(false);
     }
 
     public void btneditTask() {
@@ -129,5 +122,13 @@ public class UserController implements IControllerView{
         txttitle.setText("");
         txtDescription.setText("");
         dpDeadline.setValue(null);
+    }
+
+    @Override
+    public void cargaInicial() {
+        Task task = new Task();
+        tasklist = FXCollections.observableArrayList(
+                task.getallTasks());
+        table.setItems(tasklist);
     }
 }
