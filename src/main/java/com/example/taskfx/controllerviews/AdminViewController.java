@@ -15,6 +15,8 @@ import javafx.scene.control.*;
 import javafx.scene.control.cell.CheckBoxTableCell;
 import javafx.scene.input.MouseEvent;
 
+import java.util.List;
+
 public class AdminViewController extends ControllerView {
 
     public Menu mnFile;
@@ -23,12 +25,14 @@ public class AdminViewController extends ControllerView {
     public TableColumn<Admin, String> username;
     public TableColumn<Admin, String> rol;
     public TextField txtUsername;
-    public TextField txtPassword;
+    public PasswordField txtPassword;
     public Button bttnNew;
     public Button btnedit;
     public Button btnDelete;
-    public TextField txtRolInt;
     public ObservableList<Admin> adminlist;
+    public PasswordField txtPassword1;
+    public Label lblmsg;
+    public ComboBox<Rol> cmbRol;
 
     @FXML
     public void traerdatos() {
@@ -45,10 +49,13 @@ public class AdminViewController extends ControllerView {
 
     @FXML
     public void agregarAtabla() {
-        taskController.newUser(txtUsername.getText(),txtPassword.getText(),Integer.parseInt(txtRolInt.getText()));
-        txtUsername.clear();
-        txtPassword.clear();
-        txtRolInt.clear();
+        if (txtPassword.getText().equals(txtPassword1)) {
+            taskController.newUser(txtUsername.getText(), txtPassword.getText(), cmbRol.getValue().getIdrol());
+            txtUsername.clear();
+            txtPassword.clear();
+        }else {
+            lblmsg.setText("Password is not the same");
+        }
     }
 
     @FXML
@@ -78,6 +85,7 @@ public class AdminViewController extends ControllerView {
         iduser.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIduser()));
         username.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getUsername()));
         rol.setCellValueFactory(cellData -> new SimpleObjectProperty<>(cellData.getValue().getIdrol().getName()));
+
         table.setOnMouseClicked(new EventHandler<MouseEvent>() {
             @Override
             public void handle(MouseEvent mouseEvent) {
@@ -85,12 +93,11 @@ public class AdminViewController extends ControllerView {
                     Admin admin = table.getSelectionModel().getSelectedItem();
                     txtUsername.setText(admin.getUsername());
                     txtPassword.setText(admin.getPassword());
-                    txtRolInt.setText(admin.getIdrol().getName());
                     btnedit.setVisible(true);
                     bttnNew.setVisible(false);
                     btnDelete.setVisible(true);
                     txtUsername.setDisable(true);
-                    txtRolInt.setDisable(true);
+                    cmbRol.setDisable(true);
                 }
             }
         });
@@ -100,10 +107,10 @@ public class AdminViewController extends ControllerView {
         btnedit.setVisible(false);
         btnDelete.setVisible(false);
         txtUsername.setDisable(false);
-        txtRolInt.setDisable(false);
+        cmbRol.setDisable(false);
         txtUsername.setText("");
         txtPassword.setText("");
-        txtRolInt.setText("");
+        txtPassword1.setText("");
     }
 
     @Override
@@ -111,5 +118,7 @@ public class AdminViewController extends ControllerView {
         adminlist = FXCollections.observableArrayList(
                 taskController.getAllUser());
         table.setItems(adminlist);
+        List<Rol> rolList = taskController.getAllRol();
+        cmbRol.getItems().addAll(rolList);
     }
 }

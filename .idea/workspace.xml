@@ -5,11 +5,8 @@
   </component>
   <component name="ChangeListManager">
     <list default="true" id="78a05b23-717b-4bbb-bf9f-0a058d79c316" name="Changes" comment="">
-      <change afterPath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/ControllerView.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/AdminViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/AdminViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/IControllerView.java" beforeDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/UserController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/UserController.java" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/taskfx/admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/taskfx/admin-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
@@ -115,14 +112,23 @@
       <option name="project" value="LOCAL" />
       <updated>1707938643180</updated>
     </task>
-    <option name="localTasksCounter" value="4" />
+    <task id="LOCAL-00004" summary="Vistas hechas y metodos funcionando">
+      <option name="closed" value="true" />
+      <created>1708019747150</created>
+      <option name="number" value="00004" />
+      <option name="presentableId" value="LOCAL-00004" />
+      <option name="project" value="LOCAL" />
+      <updated>1708019747150</updated>
+    </task>
+    <option name="localTasksCounter" value="5" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
     <MESSAGE value="Nuevo" />
     <MESSAGE value="vistas" />
     <MESSAGE value="funciones" />
-    <option name="LAST_COMMIT_MESSAGE" value="funciones" />
+    <MESSAGE value="Vistas hechas y metodos funcionando" />
+    <option name="LAST_COMMIT_MESSAGE" value="Vistas hechas y metodos funcionando" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
