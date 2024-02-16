@@ -33,6 +33,7 @@ public class AdminViewController extends ControllerView {
     public PasswordField txtPassword1;
     public Label lblmsg;
     public ComboBox<Rol> cmbRol;
+    private int idValue;
 
     @FXML
     public void traerdatos() {
@@ -49,12 +50,16 @@ public class AdminViewController extends ControllerView {
 
     @FXML
     public void agregarAtabla() {
-        if (txtPassword.getText().equals(txtPassword1)) {
-            taskController.newUser(txtUsername.getText(), txtPassword.getText(), cmbRol.getValue().getIdrol());
-            txtUsername.clear();
-            txtPassword.clear();
+        if (txtPassword.getText().equals(txtPassword1.getText())) {
+            if (!txtUsername.getText().isEmpty()){
+                taskController.newUser(txtUsername.getText(), txtPassword.getText(), cmbRol.getValue().getIdrol());
+                txtUsername.clear();
+                txtPassword.clear();
+            }else {
+                lblmsg.setText("Need a username");
+            }
         }else {
-            lblmsg.setText("Password is not the same");
+            lblmsg.setText("Repeat password");
         }
     }
 
@@ -66,6 +71,7 @@ public class AdminViewController extends ControllerView {
         admin.setPassword(admin.getPassword());
         admin.setIdrol(admin.getIdrol());
         taskController.newPassword(admin.getUsername(), txtPassword.getText());
+        taskController.changeRol(cmbRol.getValue().getIdrol(),txtUsername.getText());
         table.refresh();
         Cancelar();
     }
@@ -73,11 +79,10 @@ public class AdminViewController extends ControllerView {
     @FXML
     public void btnBorrar() {
         Admin admin = table.getSelectionModel().getSelectedItem();
+        taskController.deleteUser(admin.getIduser());
         adminlist.remove(admin);
-        taskController.deleteUser(txtUsername.getText(),txtPassword.getText());
         Cancelar();
         table.refresh();
-        btnDelete.setVisible(false);
     }
 
     @FXML
@@ -97,7 +102,6 @@ public class AdminViewController extends ControllerView {
                     bttnNew.setVisible(false);
                     btnDelete.setVisible(true);
                     txtUsername.setDisable(true);
-                    cmbRol.setDisable(true);
                 }
             }
         });

@@ -7,7 +7,6 @@
     <list default="true" id="78a05b23-717b-4bbb-bf9f-0a058d79c316" name="Changes" comment="">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/AdminViewController.java" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/java/com/example/taskfx/controllerviews/AdminViewController.java" afterDir="false" />
-      <change beforePath="$PROJECT_DIR$/src/main/resources/com/example/taskfx/admin-view.fxml" beforeDir="false" afterPath="$PROJECT_DIR$/src/main/resources/com/example/taskfx/admin-view.fxml" afterDir="false" />
     </list>
     <option name="SHOW_DIALOG" value="false" />
     <option name="HIGHLIGHT_CONFLICTS" value="true" />
@@ -48,7 +47,7 @@
   <component name="PropertiesComponent"><![CDATA[{
   "keyToString": {
     "Application.HelloApplication.executor": "Run",
-    "Application.TaskApplication.executor": "Run",
+    "Application.TaskApplication.executor": "Debug",
     "Downloaded.Files.Path.Enabled": "false",
     "Repository.Attach.Annotations": "false",
     "Repository.Attach.JavaDocs": "false",
@@ -120,7 +119,15 @@
       <option name="project" value="LOCAL" />
       <updated>1708019747150</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Combo Box y repeatPass">
+      <option name="closed" value="true" />
+      <created>1708025107083</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1708025107083</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="VcsManagerConfiguration">
@@ -128,7 +135,8 @@
     <MESSAGE value="vistas" />
     <MESSAGE value="funciones" />
     <MESSAGE value="Vistas hechas y metodos funcionando" />
-    <option name="LAST_COMMIT_MESSAGE" value="Vistas hechas y metodos funcionando" />
+    <MESSAGE value="Combo Box y repeatPass" />
+    <option name="LAST_COMMIT_MESSAGE" value="Combo Box y repeatPass" />
   </component>
   <component name="XDebuggerManager">
     <breakpoint-manager>
@@ -144,10 +152,5 @@
         </line-breakpoint>
       </breakpoints>
     </breakpoint-manager>
-    <watches-manager>
-      <configuration name="Application">
-        <watch expression="userlogged" language="JAVA" />
-      </configuration>
-    </watches-manager>
   </component>
 </project>
